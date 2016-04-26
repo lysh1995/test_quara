@@ -12,15 +12,9 @@
     tools:context="quara.test_login.ListActivity"
     tools:showIn="@layout/activity_list">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/listView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp" />
@@ -59,6 +53,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    </RelativeLayout>
-    </ScrollView>
+
 </RelativeLayout>

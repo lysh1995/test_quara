@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +32,60 @@ import java.util.List;
 import java.util.Map;
 
 public class ListActivity extends AppCompatActivity implements View.OnClickListener{
+
+    public class Description{
+        String name;
+        String description;
+        String comments;
+        Description(String name, String description, String comments){
+            this.name = name;
+            this.description = description;
+            this.comments = comments;
+        }
+
+        String getName()
+        {
+            return this.name;
+        }
+
+        String getDescription()
+        {
+            return this.description;
+        }
+
+    }
+
+    private class MyListAdapter extends ArrayAdapter<Description>{
+        ArrayList<Description> des;
+
+        public MyListAdapter(ArrayList<Description> descriptions){
+            super(ListActivity.this, R.layout.item_view, descriptions);
+            this.des = descriptions;
+        };
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            View itemView = convertView;
+            if (itemView == null)
+            {
+                itemView = getLayoutInflater().inflate(R.layout.item_view, parent, false);
+            }
+
+            Description DesCurr = this.des.get(position);
+
+            TextView makeTitle = (TextView) itemView.findViewById(R.id.Title);
+            makeTitle.setText(DesCurr.getName());
+
+            TextView makesubTitle = (TextView) itemView.findViewById(R.id.subTitle);
+            makesubTitle.setText(DesCurr.getDescription());
+
+            return itemView;
+        }
+
+
+    }
+
     final Activity act = this;
     static Context tt;
     final Context temp = this;
@@ -96,22 +151,19 @@ public class ListActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void done(ArrayList returnQueue) {
                 Iterator<ArrayList> iterator = returnQueue.iterator();
-                List<String> name_list = new ArrayList<String>();
+                ArrayList<Description> name_list = new ArrayList<Description>();
                 ListView listview = (ListView) findViewById(R.id.listView);
                 while (iterator.hasNext()) {
                     Map entry = (Map) iterator.next();
-                    String tv = "";
+                    Description tv;
                     Map result = entry;
                     if (!result.get("user_notes").equals(""))
-                        tv = "student name: " + result.get("user_name") + " position: "
-                                + result.get("user_pos") + " topic: " + result.get("user_topic") + " notes: " + result.get("user_notes");
+                        tv = new Description(result.get("user_name").toString(), "position: " + result.get("user_pos") + " topic: " + result.get("user_topic"), "notes: " + result.get("user_notes"));
                     else
-                        tv = "student name: " + result.get("user_name") + " position: "
-                                + result.get("user_pos") + " topic: " + result.get("user_topic");
+                        tv = new Description(result.get("user_name").toString(), "position: " + result.get("user_pos") + " topic: " + result.get("user_topic"), "");
                     name_list.add(tv);
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(temp, android.R.layout.content_list, name_list);
-                adapter.addAll(name_list);
+                ArrayAdapter<Description> adapter = new MyListAdapter(name_list);
                 listview.setAdapter(adapter);
             }
         });
