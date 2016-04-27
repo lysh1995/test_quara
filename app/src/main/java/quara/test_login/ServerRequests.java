@@ -5,9 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.android.gms.games.quest.Quest;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -15,17 +12,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class ServerRequests {
+
+    //interface for server callback
+    interface onDatabaseReturnCallBack {
+        <T> T DatabaseReturnExecute(String line) throws Exception;
+    }
+
+
 
     ProgressDialog progressDialog;
 
@@ -68,6 +69,46 @@ public class ServerRequests {
         writer.write(encodedStr);
         writer.flush();
         return con;
+    }
+
+    private <T> T sendDataToDatabase(String encodedStr, String filename, onDatabaseReturnCallBack callback) {
+        BufferedReader reader = null;
+        T returnValue = null;
+        try {
+            HttpURLConnection con = setupServer(filename, encodedStr);
+            StringBuilder sb = new StringBuilder();
+            reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+            String line;
+            while((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            line = sb.toString();
+
+            Log.i("custom_check", "The values received in the store part are as follows:");
+            Log.i("custom_check",line);
+
+            if (!line.equals("null"))
+            {
+                //database doesn't return any data, so don't do anything
+
+                //TODO: implement callback
+                returnValue = callback.DatabaseReturnExecute(line);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(reader != null) {
+                try {
+                    reader.close();     //Closing the
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return returnValue;
     }
 
     public void storeUserDataInBackground(User user, GetUserCallBack callBack)
@@ -191,6 +232,13 @@ public class ServerRequests {
         User user;
         GetUserCallBack userCallback;
 
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
+
         public StoreUserDateAsyncTask(User user, GetUserCallBack userCallback)
         {
             this.user = user;
@@ -213,28 +261,7 @@ public class ServerRequests {
             BufferedReader reader = null;
             String filename = "Register.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
 
             return null;
         }
@@ -252,6 +279,28 @@ public class ServerRequests {
     public class fetchUserDateAsyncTask extends AsyncTask<Void, Void, User> {
         User user;
         GetUserCallBack userCallback;
+
+        //TODO: Implement this to work and refactor doInBackground
+        /*
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <User> User DatabaseReturnExecute(String line) {
+                User returnUser = null;
+                try {
+                    if (line.equals("[]")) {
+                        returnUser = null;
+                    } else {
+                        JSONObject jObject = new JSONObject(line);
+                        String name = jObject.getString("name");
+                        returnUser = new User(name, user.username, user.password);
+
+                    }
+                } catch (Exception e) {
+                    throw e;
+                }
+                return returnUser;
+            }
+        }; */
 
         public fetchUserDateAsyncTask(User user, GetUserCallBack userCallback) {
             this.user = user;
@@ -539,9 +588,16 @@ public class ServerRequests {
             super.onPostExecute(returnDescription);
         }
     }
-    public class CreateQueueAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class CreateQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Queue queue;
         GetActualQueueCallBack ActualQueueCallback;
+
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
 
         public CreateQueueAsyncTask(Queue queue, GetActualQueueCallBack ActualQueueCallback) {
             this.queue = queue;
@@ -553,53 +609,22 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("course_name", queue.course_name);
             dataToSend.put("queue_name", queue.queue_name);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList queue = new ArrayList();
             String filename = "CreateQueue.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return queue;
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnQueue) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            ActualQueueCallback.done(returnQueue);
-            super.onPostExecute(returnQueue);
+            ActualQueueCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
@@ -696,9 +721,16 @@ public class ServerRequests {
         }
     }
 
-    public class InsertQueueAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class InsertQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
+
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
 
         public InsertQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -710,7 +742,7 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("user_name", question.user_name);
             dataToSend.put("user_pos", question.user_pos);
@@ -719,54 +751,31 @@ public class ServerRequests {
             dataToSend.put("course_name", question.course_name);
             dataToSend.put("ta_id", question.ta_id);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList queue = new ArrayList();
+
             String filename = "Enqueue.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return queue;
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnQueue) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            QueueCallback.done(returnQueue);
-            super.onPostExecute(returnQueue);
+            QueueCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
-    public class EditQueueAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class EditQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
+
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
 
         public EditQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -778,7 +787,7 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("user_name", question.user_name);
             dataToSend.put("user_pos", question.user_pos);
@@ -787,54 +796,31 @@ public class ServerRequests {
             dataToSend.put("course_name", question.course_name);
             dataToSend.put("ta_id", question.ta_id);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList queue = new ArrayList();
+
             String filename = "Editqueue.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return queue;
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnQueue) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            QueueCallback.done(returnQueue);
-            super.onPostExecute(returnQueue);
+            QueueCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
-    public class ClearQueueAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class ClearQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
+
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
 
         public ClearQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -846,58 +832,35 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("course_name", question.course_name);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList queue = new ArrayList();
+
             String filename = "clearQueue.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return queue;
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnQueue) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            QueueCallback.done(returnQueue);
-            super.onPostExecute(returnQueue);
+            QueueCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
-    public class DeleteQueueAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class DeleteQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
+
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
 
         public DeleteQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -909,62 +872,39 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("user_name", question.user_name);
             dataToSend.put("course_name", question.course_name);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList queue = new ArrayList();
+
             String filename = "Dequeue.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return queue;
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnQueue) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            QueueCallback.done(returnQueue);
-            super.onPostExecute(returnQueue);
+            QueueCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
     /**
      * Insert a grade into the DB.
      */
-    public class InsertGradeAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class InsertGradeAsyncTask extends AsyncTask<Void, Void, Void> {
         Grade grade;
         GetGradeCallBack GradeCallback;
+
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
 
         public InsertGradeAsyncTask(Grade grade, GetGradeCallBack GradeCallback) {
             this.grade = grade;
@@ -976,54 +916,24 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("username", grade.username);
             dataToSend.put("score", grade.score);
             dataToSend.put("description", grade.description);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList grade = new ArrayList(); //TODO fix it!
+
             String filename = "AddGrade.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return grade;
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnGrade) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            GradeCallback.done(returnGrade);
-            super.onPostExecute(returnGrade);
+            GradeCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
@@ -1195,6 +1105,13 @@ public class ServerRequests {
         Question question;
         GetQueueCallBack QueueCallBack;
 
+        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
+            @Override
+            public <T> T DatabaseReturnExecute(String line) {
+                return null;
+            }
+        };
+
         public answerQuestionAsyncTask(Question question, GetQueueCallBack QueueCallBack) {
             this.question = question;
             this.QueueCallBack = QueueCallBack;
@@ -1215,31 +1132,8 @@ public class ServerRequests {
             ArrayList question = new ArrayList();
             String filename = "answer.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
 
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
             return question;
         }
 

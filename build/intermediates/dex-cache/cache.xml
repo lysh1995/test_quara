@@ -1,3 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4b8df1b1e51fe14b0e89b3845dc2e215a024a09f">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-8.3.0_5ad8978f5c5a12b6b0f5fd51256a65b8ce4da926.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="cb4af597d079ffdc0984a3ec2c03cbf6a1b9f869">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-8.3.0_d46221e160701e61a7ae6da58e94804637901d4f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_f96a98022736713712e327818d6741092adf90ac.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6d9ed9a288364688e7fcf6704776284dac1eb42e">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-8.3.0_231fd698a505549aa2214ebe1a069197e6471fa0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ea34579b1be157cd792376362157e9c54ebb4cd7">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-8.3.0_ab7a5929f2355ac3044292db8499ce14a26ee465.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="724ce977487ab3a215d4d2eb47d8dccd9f30013f">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-vision-8.3.0_55c06a21f1ecae459e8fffb1bf317171abbee658.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="697679619b00837e3d09e9988a2e1e2a9009d502">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-8.3.0_c4801c873cba5971cd39a0c36b13958203d0ca89.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-auth\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fd76d95678a6b2b8a49bb8a9fb5bcef7aedb70e7">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-auth-8.3.0_82088b7ef690327801176646ce4e1c7110ff7b12.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_e06f5618f18453387292da458864fe9a022b6827.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.pushbots\pushbots-lib\2.0.13\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="635a77d3f219ad345f4b82dba86e4aabe4f35b94">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.pushbots-pushbots-lib-2.0.13_00394ad6e18204b16314dbdfc38a7a3839415191.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="27775d59b16610ac76f1b83693fedd9520396332">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-8.3.0_420d997678115fb1b7278211895a84b8a5b51f69.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="77f9593d979f4347344be233bd0d888315f79517">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-8.3.0_96e04d839f0c3217a0e4a19c10be4a3efb343f16.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.1_86c72b976acd155275331ca2e09c4034f81fa609.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2c6fcd6267cbac6509a2e72a61127534a1d616cf">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-8.3.0_174e8c08c49987d53a523e871b459e6e8e04eb63.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Android\Android SDK\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_2c791e4870739374869a13bd119d772906fdf032.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="345a1b5cf5b144ce18ba6962bc66a7e2f26c1c1b">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-8.3.0_5532f9b60841a876f0fd65513588591a6b71914e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="58adcfbe2c8393765e84c5489d01bba6a5159eb2">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appinvite-8.3.0_2a9726beabe5916d74f08f61c6a242e044e58c51.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9c9bdb4b2497465a6cf7d5e8f57c5298f828a380">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-8.3.0_fbf2931209f1220ce860ba8e9378476a0f09b671.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0_66cfba5a2aa170fdfa3719f1bad56d2d1fb33d44.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="eb576427887e497cd958a475475f9206e38dc314">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-8.3.0_6055c5b78888dedc319f684907269e0a7c1ecc85.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_9be38a2f019c00c81ef01710082e7ce357053fda.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.android.support-mediarouter-v7-22.2.0_b6d6e30c7c14eea2bae1b0d0f08c5fc66fcd1487.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="744c49c02a27569cc4cc049685d3649e4ef439f2">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-8.3.0_bcea19a9dd4de04e3856893e3db7fd8d4c1e40ce.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0c3e81d3eb86b86d194b5cdb6a4de78203f6f7fd">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-8.3.0_22e995bd72e5628328a9a6b179a2ff9b671bab02.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="af6ee25641df3142059c0828517aa7ee6eba08d6">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-8.3.0_ae12d791c80cc856164f6daed77f8d2808b5136e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="01a90bbb9495a8bbf6f3cfdf12f1b35caaa9524b">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-8.3.0_73095a6a9b52d9abd448e43e5618664de6ed599c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.1.6\b036abbb61656165da99cf44898e4b9123687e65\MPAndroidChart-v2.1.6.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b036abbb61656165da99cf44898e4b9123687e65">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v2.1.6_3730fe075f4f9f1d47599f3d6ed7f1795598fd06.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0a1897426566e408a5c20a3d931f77d89771d07f">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-8.3.0_959c71091e31c795ad1f9b792db8ae7f57f88b93.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="71eda10e33212e44245524b5087366ff8d805825">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-8.3.0_a05bd5fb23107b40bfc1901819582b583c499360.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9aedc597d74c6d77258ce5236e9abff0c3cc65e3">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-8.3.0_8548b0a7e4d25839fb088c9fcd144e122bfb5d4f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0af4f577b4a21eb9be2a7f52e33b077b67e6d9f8">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-8.3.0_4eeb40975f49cbc8fbbceb5c6a4bcdf940674269.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_b30f715b5f5ec11ec42131babc7557f48fd2ee80.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b000ecceb9877fefcdc7ab1959ff03df91551656">
+        <dex dex="C:\Users\Jamie\Quara\test_quara\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-measurement-8.3.0_c35f6b0967d7f57202b14f28baf817d95bcf1d69.jar" />
+    </item>
+
+</items>
