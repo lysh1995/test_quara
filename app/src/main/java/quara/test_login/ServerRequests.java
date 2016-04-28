@@ -23,7 +23,7 @@ public class ServerRequests {
 
     //interface for server callback
     interface onDatabaseReturnCallBack {
-        <T> T DatabaseReturnExecute(String line) throws Exception;
+        void DatabaseReturnExecute(String line);
     }
 
 
@@ -71,9 +71,8 @@ public class ServerRequests {
         return con;
     }
 
-    private <T> T sendDataToDatabase(String encodedStr, String filename, onDatabaseReturnCallBack callback) {
+    private void sendDataToDatabase(String encodedStr, String filename, onDatabaseReturnCallBack callback) {
         BufferedReader reader = null;
-        T returnValue = null;
         try {
             HttpURLConnection con = setupServer(filename, encodedStr);
             StringBuilder sb = new StringBuilder();
@@ -93,8 +92,9 @@ public class ServerRequests {
                 //database doesn't return any data, so don't do anything
 
                 //TODO: implement callback
-                returnValue = callback.DatabaseReturnExecute(line);
-
+                if (callback != null) {
+                    callback.DatabaseReturnExecute(line);
+                }
             }
 
         } catch (Exception e) {
@@ -108,7 +108,7 @@ public class ServerRequests {
                 }
             }
         }
-        return returnValue;
+        //return returnValue;
     }
 
     public void storeUserDataInBackground(User user, GetUserCallBack callBack)
@@ -232,13 +232,6 @@ public class ServerRequests {
         User user;
         GetUserCallBack userCallback;
 
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
-
         public StoreUserDateAsyncTask(User user, GetUserCallBack userCallback)
         {
             this.user = user;
@@ -261,7 +254,7 @@ public class ServerRequests {
             BufferedReader reader = null;
             String filename = "Register.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
 
             return null;
         }
@@ -281,26 +274,22 @@ public class ServerRequests {
         GetUserCallBack userCallback;
 
         //TODO: Implement this to work and refactor doInBackground
-        /*
         onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
             @Override
-            public <User> User DatabaseReturnExecute(String line) {
-                User returnUser = null;
+            public void DatabaseReturnExecute(String line) {
                 try {
                     if (line.equals("[]")) {
-                        returnUser = null;
+                        user = null;
                     } else {
                         JSONObject jObject = new JSONObject(line);
                         String name = jObject.getString("name");
-                        returnUser = new User(name, user.username, user.password);
-
+                        user = new User(name, user.username, user.password);
                     }
                 } catch (Exception e) {
-                    throw e;
+                    e.printStackTrace();
                 }
-                return returnUser;
             }
-        }; */
+        };
 
         public fetchUserDateAsyncTask(User user, GetUserCallBack userCallback) {
             this.user = user;
@@ -318,49 +307,12 @@ public class ServerRequests {
             dataToSend.put("password", user.password);
 
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            User returnUser = null;
+
             String filename = "FetchUserData.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            sendDataToDatabase(encodedStr, filename, databaseCallBack);
 
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (line.equals("[]"))
-                {
-                    user = null;
-                }
-                else
-                {
-                    JSONObject jObject = new JSONObject(line);
-                    String name = jObject.getString("name");
-                    returnUser = new User(name, user.username, user.password);
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            return returnUser;
+            return user;
         }
 
         @Override
@@ -374,6 +326,21 @@ public class ServerRequests {
     public class checkUserDateAsyncTask extends AsyncTask<Void, Void, User> {
         User user;
         GetUserCallBack userCallback;
+
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            //TODO: figure out if i need to make a new user: returnUser or not
+            public void DatabaseReturnExecute(String line) {
+                if (line.equals("[]"))
+                {
+                    //user = new User(user.name, user.username, user.password);
+                }
+                else
+                {
+                    user = null;
+                }
+            }
+        };
 
         public checkUserDateAsyncTask(User user, GetUserCallBack userCallback) {
             this.user = user;
@@ -390,45 +357,12 @@ public class ServerRequests {
             dataToSend.put("username", user.username);
 
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            User returnUser = null;
+
             String filename = "CheckUserData.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
 
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (line.equals("[]"))
-                {
-                    returnUser = new User(user.name, user.username, user.password);
-                }
-                else
-                {
-                    user = null;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return returnUser;
+            return user;
         }
 
         @Override
@@ -442,40 +376,11 @@ public class ServerRequests {
     public class getAllCourseAsyncTask extends AsyncTask<Void, Void, Map> {
         User user;
         GetCourseCallBack CourseCallback;
+        Map returnCourse = new HashMap();
 
-        public getAllCourseAsyncTask(User user, GetCourseCallBack CourseCallback) {
-            this.user = user;
-            this.CourseCallback = CourseCallback;
-        }
-
-        private String getEncodedData(Map<String,String> data) {
-            return ServerRequests.this.getEncodedData(data);
-        }
-
-        @Override
-        protected Map doInBackground(Void... params) {
-            Map dataToSend = new HashMap();
-            dataToSend.put("username", user.username);
-
-            String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            Map returnCourse = new HashMap();
-            String filename = "GetAllCourse.php";
-
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
                 if (!line.equals("[]"))
                 {
                     //split json string to map
@@ -497,18 +402,28 @@ public class ServerRequests {
                         returnCourse.put(key, value);
                     }
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
+        };
+
+        public getAllCourseAsyncTask(User user, GetCourseCallBack CourseCallback) {
+            this.user = user;
+            this.CourseCallback = CourseCallback;
+        }
+
+        private String getEncodedData(Map<String,String> data) {
+            return ServerRequests.this.getEncodedData(data);
+        }
+
+        @Override
+        protected Map doInBackground(Void... params) {
+            Map dataToSend = new HashMap();
+            dataToSend.put("username", user.username);
+
+            String encodedStr = getEncodedData(dataToSend);
+            String filename = "GetAllCourse.php";
+
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
+
             return returnCourse;
         }
 
@@ -523,10 +438,27 @@ public class ServerRequests {
     public class getAllCourseDescriptionAsyncTask extends AsyncTask<Void, Void, String> {
         Course course;
         GetDescriptionCallBack DescriptionCallback;
+        String description;
+
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
+                if (!line.equals("[]"))
+                {
+                    line = line.substring(1);
+                    line = line.substring(0, line.length() - 1);
+                    String[] content = line.split(":");
+                    description = content[1];
+                    description = description.substring(1);
+                    description = description.substring(0, description.length() - 1);
+                }
+            }
+        };
 
         public getAllCourseDescriptionAsyncTask(Course course, GetDescriptionCallBack DescriptionCallback) {
             this.course = course;
             this.DescriptionCallback = DescriptionCallback;
+            description = new String();
         }
 
         private String getEncodedData(Map<String,String> data) {
@@ -539,45 +471,10 @@ public class ServerRequests {
             dataToSend.put("course_name", course.course_name);
 
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            String description = new String();
             String filename = "GetSelectedCourse.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
 
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("[]"))
-                {
-                    line = line.substring(1);
-                    line = line.substring(0, line.length() - 1);
-                    String[] content = line.split(":");
-                    description = content[1];
-                    description = description.substring(1);
-                    description = description.substring(0, description.length() - 1);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
             return description;
         }
 
@@ -588,16 +485,10 @@ public class ServerRequests {
             super.onPostExecute(returnDescription);
         }
     }
+
     public class CreateQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Queue queue;
         GetActualQueueCallBack ActualQueueCallback;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public CreateQueueAsyncTask(Queue queue, GetActualQueueCallBack ActualQueueCallback) {
             this.queue = queue;
@@ -616,7 +507,7 @@ public class ServerRequests {
             String encodedStr = getEncodedData(dataToSend);
             String filename = "CreateQueue.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
             return null;
         }
 
@@ -631,6 +522,42 @@ public class ServerRequests {
     public class getAllQueueAsyncTask extends AsyncTask<Void, Void, ArrayList> {
         Question question;
         GetQueueCallBack QueueCallback;
+        ArrayList queue = new ArrayList();
+
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
+                if (!line.equals("null")) {
+                    line = line.substring(1);
+                    line = line.substring(0, line.length() - 1);
+                    String[] temp_list = line.split("],");
+                    for (int i = 0; i < temp_list.length; i++) {
+                        String new_element = temp_list[i];
+                        if (new_element.charAt(0) == '[')
+                            new_element = new_element.substring(1);
+                        if (new_element.charAt(new_element.length() - 1) == ']')
+                            new_element = new_element.substring(0, new_element.length() - 1);
+                        new_element = new_element.substring(1);
+                        new_element = new_element.substring(0, new_element.length() - 1);
+                        String temp_info[] = new_element.split(",");
+                        Map user_info = new HashMap();
+                        for (int j = 0; j < temp_info.length; j++) {
+                            String new_info = temp_info[j];
+                            String temp[] = new_info.split(":");
+                            String key = temp[0];
+                            key = key.substring(1);
+                            key = key.substring(0, key.length() - 1);
+                            String value = temp[1];
+                            value = value.substring(1);
+                            value = value.substring(0, value.length() - 1);
+                            user_info.put(key, value);
+                        }
+
+                        queue.add(user_info);
+                    }
+                }
+            }
+        };
 
         public getAllQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -648,68 +575,10 @@ public class ServerRequests {
 
             String encodedStr = getEncodedData(dataToSend);
             Log.i("send_check", "the data sent is: " + encodedStr);
-            BufferedReader reader = null;
-            ArrayList queue = new ArrayList();
+
             String filename = "GetAllQueue.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("null"))
-                {
-                    line = line.substring(1);
-                    line = line.substring(0, line.length() - 1);
-                    String[] temp_list = line.split("],");
-                    for (int i = 0; i < temp_list.length; i++)
-                    {
-                        String new_element = temp_list[i];
-                        if (new_element.charAt(0) == '[')
-                            new_element = new_element.substring(1);
-                        if (new_element.charAt(new_element.length()-1) == ']')
-                            new_element = new_element.substring(0, new_element.length() - 1);
-                        new_element = new_element.substring(1);
-                        new_element = new_element.substring(0, new_element.length() - 1);
-                        String temp_info[] = new_element.split(",");
-                        Map user_info = new HashMap();
-                        for (int j = 0; j < temp_info.length; j++)
-                        {
-                            String new_info = temp_info[j];
-                            String temp[] = new_info.split(":");
-                            String key = temp[0];
-                            key = key.substring(1);
-                            key = key.substring(0, key.length() - 1);
-                            String value = temp[1];
-                            value = value.substring(1);
-                            value = value.substring(0, value.length() - 1);
-                            user_info.put(key, value);
-                        }
-
-                        queue.add(user_info);
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
             return queue;
         }
 
@@ -724,13 +593,6 @@ public class ServerRequests {
     public class InsertQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public InsertQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -754,7 +616,7 @@ public class ServerRequests {
 
             String filename = "Enqueue.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
             return null;
         }
 
@@ -769,13 +631,6 @@ public class ServerRequests {
     public class EditQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public EditQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -799,7 +654,7 @@ public class ServerRequests {
 
             String filename = "Editqueue.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
             return null;
         }
 
@@ -814,13 +669,6 @@ public class ServerRequests {
     public class ClearQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public ClearQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -839,7 +687,7 @@ public class ServerRequests {
 
             String filename = "clearQueue.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
             return null;
         }
 
@@ -854,13 +702,6 @@ public class ServerRequests {
     public class DeleteQueueAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallback;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public DeleteQueueAsyncTask(Question question, GetQueueCallBack QueueCallback) {
             this.question = question;
@@ -880,7 +721,7 @@ public class ServerRequests {
 
             String filename = "Dequeue.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
             return null;
         }
 
@@ -898,13 +739,6 @@ public class ServerRequests {
     public class InsertGradeAsyncTask extends AsyncTask<Void, Void, Void> {
         Grade grade;
         GetGradeCallBack GradeCallback;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public InsertGradeAsyncTask(Grade grade, GetGradeCallBack GradeCallback) {
             this.grade = grade;
@@ -925,7 +759,7 @@ public class ServerRequests {
 
             String filename = "AddGrade.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
             return null;
         }
 
@@ -943,40 +777,11 @@ public class ServerRequests {
     public class GetGradeAsyncTask extends AsyncTask<Void, Void, ArrayList> {
         User user;
         GetGradeCallBack GradeCallback;
+        ArrayList grades = new ArrayList();
 
-        public GetGradeAsyncTask(User user, GetGradeCallBack GradeCallback) {
-            this.user = user;
-            this.GradeCallback = GradeCallback;
-        }
-
-        private String getEncodedData(Map<String,String> data) {
-            return ServerRequests.this.getEncodedData(data);
-        }
-
-        @Override
-        protected ArrayList doInBackground(Void... params) {
-            Map dataToSend = new HashMap();
-            dataToSend.put("username", user.username);
-            String encodedStr = getEncodedData(dataToSend);
-            Log.i("user_check", "the data sent is: " + encodedStr);
-            BufferedReader reader = null;
-            ArrayList grades = new ArrayList();
-            String filename = "GetUserGrades.php";
-
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
                 if (!line.equals("null"))
                 {
                     line = line.substring(1);
@@ -1014,18 +819,28 @@ public class ServerRequests {
                         grades.add(user_info);
                     }
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the reader
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
+        };
+
+        public GetGradeAsyncTask(User user, GetGradeCallBack GradeCallback) {
+            this.user = user;
+            this.GradeCallback = GradeCallback;
+        }
+
+        private String getEncodedData(Map<String,String> data) {
+            return ServerRequests.this.getEncodedData(data);
+        }
+
+        @Override
+        protected ArrayList doInBackground(Void... params) {
+            Map dataToSend = new HashMap();
+            dataToSend.put("username", user.username);
+            String encodedStr = getEncodedData(dataToSend);
+            Log.i("user_check", "the data sent is: " + encodedStr);
+
+            String filename = "GetUserGrades.php";
+
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
             return grades;
         }
 
@@ -1040,6 +855,17 @@ public class ServerRequests {
     public class CheckAuthorisationAsyncTask extends AsyncTask<Void, Void, String> {
         TA ta;
         CheckAuthorisationCallBack TaCallback;
+        String ta_info = "";
+
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
+                if (!line.equals("[]"))
+                {
+                    ta_info = line;
+                }
+            }
+        };
 
         public CheckAuthorisationAsyncTask(TA ta, CheckAuthorisationCallBack TaCallback) {
             this.ta = ta;
@@ -1056,40 +882,10 @@ public class ServerRequests {
             dataToSend.put("name", ta.name);
             dataToSend.put("course_name", ta.course_name);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            String ta_info = "";
+
             String filename = "CheckAuthorisation.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("[]"))
-                {
-                    ta_info = line;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
             return ta_info;
         }
 
@@ -1101,16 +897,9 @@ public class ServerRequests {
         }
     }
 
-    public class answerQuestionAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class answerQuestionAsyncTask extends AsyncTask<Void, Void, Void> {
         Question question;
         GetQueueCallBack QueueCallBack;
-
-        onDatabaseReturnCallBack databaseCallBack = new onDatabaseReturnCallBack() {
-            @Override
-            public <T> T DatabaseReturnExecute(String line) {
-                return null;
-            }
-        };
 
         public answerQuestionAsyncTask(Question question, GetQueueCallBack QueueCallBack) {
             this.question = question;
@@ -1122,32 +911,42 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("user_name", question.user_name);
             dataToSend.put("course_name", question.course_name);
             dataToSend.put("ta_id", question.ta_id);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList question = new ArrayList();
+
             String filename = "answer.php";
 
-            sendDataToDatabase(encodedStr, filename, databaseCallBack);
+            sendDataToDatabase(encodedStr, filename, null);
 
-            return question;
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnQueue) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            QueueCallBack.done(returnQueue);
-            super.onPostExecute(returnQueue);
+            QueueCallBack.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 
     public class setOnDutyAsyncTask extends AsyncTask<Void, Void, String> {
         TA ta;
         UpdateDutyCallBack TaCallback;
+        String ta_info = "";
+
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
+                if (!line.equals("[]"))
+                {
+                    ta_info = line;
+                }
+            }
+        };
 
         public setOnDutyAsyncTask(TA ta, UpdateDutyCallBack TaCallback) {
             this.ta = ta;
@@ -1164,40 +963,9 @@ public class ServerRequests {
             dataToSend.put("name", ta.name);
             dataToSend.put("course_name", ta.course_name);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            String ta_info = "";
             String filename = "Onduty.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("[]"))
-                {
-                    ta_info = line;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
             return ta_info;
         }
 
@@ -1212,6 +980,17 @@ public class ServerRequests {
     public class setOffDutyAsyncTask extends AsyncTask<Void, Void, String> {
         TA ta;
         UpdateDutyCallBack TaCallback;
+        String ta_info = "";
+
+        onDatabaseReturnCallBack databaseCallback = new onDatabaseReturnCallBack() {
+            @Override
+            public void DatabaseReturnExecute(String line) {
+                if (!line.equals("[]"))
+                {
+                    ta_info = line;
+                }
+            }
+        };
 
         public setOffDutyAsyncTask(TA ta, UpdateDutyCallBack TaCallback) {
             this.ta = ta;
@@ -1229,40 +1008,10 @@ public class ServerRequests {
             dataToSend.put("course_name", ta.course_name);
             System.out.println("check" + ta.name);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            String ta_info = "";
+
             String filename = "Offduty.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-                if (!line.equals("[]"))
-                {
-                    ta_info = line;
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            sendDataToDatabase(encodedStr, filename, databaseCallback);
             return ta_info;
         }
 
@@ -1274,6 +1023,8 @@ public class ServerRequests {
         }
     }
 
+    //TODO: Due to the ta_list being populated inside the while loop, i didn't refactor this
+    //TODO: Actually change functionality so that this can call sendDataToDatabase
     public class getOnDutyTAAsyncTask extends AsyncTask<Void, Void, String[]> {
         TA ta;
         getOnDutyCallBack TaCallback;
@@ -1347,7 +1098,7 @@ public class ServerRequests {
     /**
      * Insert a regid into the DB.
      */
-    public class insertRegIdAsyncTask extends AsyncTask<Void, Void, ArrayList> {
+    public class insertRegIdAsyncTask extends AsyncTask<Void, Void, Void> {
         String id;
         String username;
         GetRegIdCallBack RegIdCallback;
@@ -1363,52 +1114,26 @@ public class ServerRequests {
         }
 
         @Override
-        protected ArrayList doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("id", id);
             dataToSend.put("username", username);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
-            ArrayList id = new ArrayList();
             String filename = "AddRegId.php";
 
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the reader
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return id;
+            sendDataToDatabase(encodedStr, filename, null);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ArrayList returnRegId) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
             RegIdCallback.done("");
-            super.onPostExecute(returnRegId);
+            super.onPostExecute(aVoid);
         }
     }
 
-    public class sendTALogInAsyncTask extends AsyncTask<Void, Void, String> {
+    public class sendTALogInAsyncTask extends AsyncTask<Void, Void, Void> {
         String message;
         SendTALogInCallBack sendLoginCallback;
 
@@ -1422,45 +1147,21 @@ public class ServerRequests {
         }
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             Map dataToSend = new HashMap();
             dataToSend.put("message", message);
             String encodedStr = getEncodedData(dataToSend);
-            BufferedReader reader = null;
             String filename = "gcm_ta_login.php";
-            try {
-                HttpURLConnection con = setupServer(filename, encodedStr);
-                StringBuilder sb = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-                String line;
-                while((line = reader.readLine()) != null) {
-                    sb.append(line);
-                }
-                line = sb.toString();
-
-                Log.i("custom_check","The values received in the store part are as follows:");
-                Log.i("custom_check",line);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if(reader != null) {
-                    try {
-                        reader.close();     //Closing the reader
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return "";
+            sendDataToDatabase(encodedStr, filename, null);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(String str) {
+        protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
-            sendLoginCallback.done("");
-            super.onPostExecute(str);
+            sendLoginCallback.done(null);
+            super.onPostExecute(aVoid);
         }
     }
 

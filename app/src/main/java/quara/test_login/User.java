@@ -5,9 +5,7 @@ public class User {
 
     public User(String name, String username, String password)
     {
-        this.name = name;
-        this.username = username;
-        this.password = password;
+        setInfo(name, username, password);
     }
 
     public User(String username, String password)
@@ -15,6 +13,12 @@ public class User {
         this.username = username;
         this.password = password;
         this.name = "";
+    }
+
+    public void setInfo(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
     }
 
     public String getName()
