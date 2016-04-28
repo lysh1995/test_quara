@@ -87,14 +87,9 @@ public class ServerRequests {
             Log.i("custom_check", "The values received in the store part are as follows:");
             Log.i("custom_check",line);
 
-            if (!line.equals("null"))
-            {
-                //database doesn't return any data, so don't do anything
-
-                //TODO: implement callback
-                if (callback != null) {
-                    callback.DatabaseReturnExecute(line);
-                }
+            //TODO: call the callback function
+            if (callback != null) {
+                callback.DatabaseReturnExecute(line);
             }
 
         } catch (Exception e) {
