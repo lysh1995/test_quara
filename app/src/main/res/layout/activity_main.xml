@@ -161,6 +161,8 @@ tools:context="quara.test_login.MainActivity">
                     android:textColor="#fff"
                     android:textSize="12sp" />
             </LinearLayout>
+
+
         </RelativeLayout>
 
         <!-- List of Actions (pages) -->

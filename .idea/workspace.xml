@@ -33,8 +33,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LoginTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TA.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/TA.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -43,57 +73,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LoginTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#279#280#0" expanded="false" />
-                <element signature="e#313#314#0" expanded="false" />
-                <element signature="e#1094#1095#0" expanded="false" />
-                <element signature="e#1161#1162#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerRequests.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/ServerRequests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6259205">
-              <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
-              <folding>
-                <element signature="e#8428#9030#0" expanded="true" />
-                <element signature="e#9029#9030#0" expanded="true" />
-                <element signature="e#10200#10663#0" expanded="true" />
-                <element signature="e#10662#10663#0" expanded="true" />
-                <element signature="e#11822#13023#0" expanded="true" />
-                <element signature="e#13022#13023#0" expanded="true" />
-                <element signature="e#14209#14783#0" expanded="true" />
-                <element signature="e#14782#14783#0" expanded="true" />
-                <element signature="e#17223#18997#0" expanded="true" />
-                <element signature="e#18996#18997#0" expanded="true" />
-                <element signature="e#26411#28444#0" expanded="true" />
-                <element signature="e#28443#28444#0" expanded="true" />
-                <element signature="e#29675#29926#0" expanded="true" />
-                <element signature="e#29925#29926#0" expanded="true" />
-                <element signature="e#32284#32535#0" expanded="true" />
-                <element signature="e#32534#32535#0" expanded="true" />
-                <element signature="e#33688#33939#0" expanded="true" />
-                <element signature="e#33938#33939#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.448276">
-              <caret line="104" column="23" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="23" />
+            <state vertical-scroll-proportion="-3.851852">
+              <caret line="138" column="5" selection-start-line="138" selection-start-column="4" selection-end-line="138" selection-end-column="5" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#15860#16169#0" expanded="true" />
                 <element signature="e#16168#16169#0" expanded="true" />
               </folding>
@@ -101,66 +87,78 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Register.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/Register.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-              <folding>
-                <element signature="e#1824#2112#0" expanded="true" />
-                <element signature="e#2111#2112#0" expanded="true" />
-              </folding>
-            </state>
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetUserCallBack.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/GetUserCallBack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+            <state vertical-scroll-proportion="-3.851852">
+              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/Login.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="202" column="34" selection-start-line="202" selection-start-column="34" selection-end-line="202" selection-end-column="34" />
-              <folding>
-                <element signature="e#7128#7813#0" expanded="true" />
-                <element signature="e#7812#7813#0" expanded="true" />
-              </folding>
-            </state>
+      <file leaf-file-name="activity_grade.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grade.xml">
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state vertical-scroll-proportion="24.555555">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/ListActivity.java">
+      <file leaf-file-name="activity_list.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_list.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="234" column="51" selection-start-line="234" selection-start-column="51" selection-end-line="234" selection-end-column="51" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.462963">
+              <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogoutTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LogoutTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5994109">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
               <folding>
-                <element signature="e#8428#8737#0" expanded="true" />
-                <element signature="e#8736#8737#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -620,6 +618,16 @@
                 <option name="description" value="Prepare com.android.support:support-v4:23.1.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="prepareComAndroidSupportSupportV42311Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-core:2.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoCore221Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-idling-resource:2.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoIdlingResource221Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support.test:exposed-instrumentation-api-publish:0.4.1" />
@@ -1347,6 +1355,16 @@
                 <option name="name" value="prepareComAndroidSupportSupportV42311Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-core:2.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoCore221Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Prepare com.android.support.test.espresso:espresso-idling-resource:2.2.1" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
+                <option name="name" value="prepareComAndroidSupportTestEspressoEspressoIdlingResource221Library" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support.test:exposed-instrumentation-api-publish:0.4.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
                 <option name="name" value="prepareComAndroidSupportTestExposedInstrumentationApiPublish041Library" />
@@ -1682,7 +1700,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4385162544899" />
+        <entry key="$PROJECT_DIR$" value="4385329485681" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2103,6 +2121,9 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/quara/test_login/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/quara/test_login/ServerRequests.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LogoutTest.java" />
       </list>
     </option>
   </component>
@@ -2149,6 +2170,10 @@
               <option name="myItemId" value="test_quara" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2172,6 +2197,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_login" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2407,6 +2436,7 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2476,24 +2506,24 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
           <folding>
-            <element signature="e#8428#9030#0" expanded="true" />
-            <element signature="e#9029#9030#0" expanded="true" />
-            <element signature="e#10200#10663#0" expanded="true" />
-            <element signature="e#10662#10663#0" expanded="true" />
-            <element signature="e#11822#13023#0" expanded="true" />
-            <element signature="e#13022#13023#0" expanded="true" />
-            <element signature="e#14209#14783#0" expanded="true" />
-            <element signature="e#14782#14783#0" expanded="true" />
-            <element signature="e#17223#18997#0" expanded="true" />
-            <element signature="e#18996#18997#0" expanded="true" />
-            <element signature="e#26411#28444#0" expanded="true" />
-            <element signature="e#28443#28444#0" expanded="true" />
-            <element signature="e#29675#29926#0" expanded="true" />
-            <element signature="e#29925#29926#0" expanded="true" />
-            <element signature="e#32284#32535#0" expanded="true" />
-            <element signature="e#32534#32535#0" expanded="true" />
-            <element signature="e#33688#33939#0" expanded="true" />
-            <element signature="e#33938#33939#0" expanded="true" />
+            <element signature="e#8577#9179#0" expanded="true" />
+            <element signature="e#9178#9179#0" expanded="true" />
+            <element signature="e#10349#10812#0" expanded="true" />
+            <element signature="e#10811#10812#0" expanded="true" />
+            <element signature="e#11971#13172#0" expanded="true" />
+            <element signature="e#13171#13172#0" expanded="true" />
+            <element signature="e#14358#14932#0" expanded="true" />
+            <element signature="e#14931#14932#0" expanded="true" />
+            <element signature="e#17372#19146#0" expanded="true" />
+            <element signature="e#19145#19146#0" expanded="true" />
+            <element signature="e#26560#28593#0" expanded="true" />
+            <element signature="e#28592#28593#0" expanded="true" />
+            <element signature="e#29824#30075#0" expanded="true" />
+            <element signature="e#30074#30075#0" expanded="true" />
+            <element signature="e#32433#32684#0" expanded="true" />
+            <element signature="e#32683#32684#0" expanded="true" />
+            <element signature="e#33837#34088#0" expanded="true" />
+            <element signature="e#34087#34088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2503,8 +2533,25 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="234" column="51" selection-start-line="234" selection-start-column="51" selection-end-line="234" selection-end-column="51" />
           <folding>
-            <element signature="e#8428#8737#0" expanded="true" />
-            <element signature="e#8736#8737#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1435#1436#0" expanded="false" />
+            <element signature="e#1475#1476#0" expanded="false" />
+            <element signature="e#1518#1519#0" expanded="false" />
+            <element signature="e#1565#1566#0" expanded="false" />
+            <element signature="e#3181#3198#0" expanded="false" />
+            <element signature="e#4535#4543#0" expanded="false" />
+            <element signature="e#4608#4616#0" expanded="false" />
+            <element signature="e#4733#5897#0" expanded="false" />
+            <element signature="e#4969#4982#0" expanded="false" />
+            <element signature="e#5896#5897#0" expanded="false" />
+            <element signature="e#6132#6133#0" expanded="false" />
+            <element signature="e#6163#6164#0" expanded="false" />
+            <element signature="e#7251#9308#0" expanded="false" />
+            <element signature="e#8906#9215#0" expanded="false" />
+            <element signature="e#9214#9215#0" expanded="false" />
+            <element signature="e#9307#9308#0" expanded="false" />
+            <element signature="e#10163#10923#0" expanded="false" />
+            <element signature="e#10922#10923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2536,24 +2583,24 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="469" column="38" selection-start-line="469" selection-start-column="38" selection-end-line="469" selection-end-column="38" />
           <folding>
-            <element signature="e#8428#9030#0" expanded="true" />
-            <element signature="e#9029#9030#0" expanded="true" />
-            <element signature="e#10200#10663#0" expanded="true" />
-            <element signature="e#10662#10663#0" expanded="true" />
-            <element signature="e#11822#13023#0" expanded="true" />
-            <element signature="e#13022#13023#0" expanded="true" />
-            <element signature="e#14209#14783#0" expanded="true" />
-            <element signature="e#14782#14783#0" expanded="true" />
-            <element signature="e#17223#18997#0" expanded="true" />
-            <element signature="e#18996#18997#0" expanded="true" />
-            <element signature="e#26411#28444#0" expanded="true" />
-            <element signature="e#28443#28444#0" expanded="true" />
-            <element signature="e#29675#29926#0" expanded="true" />
-            <element signature="e#29925#29926#0" expanded="true" />
-            <element signature="e#32284#32535#0" expanded="true" />
-            <element signature="e#32534#32535#0" expanded="true" />
-            <element signature="e#33688#33939#0" expanded="true" />
-            <element signature="e#33938#33939#0" expanded="true" />
+            <element signature="e#8577#9179#0" expanded="true" />
+            <element signature="e#9178#9179#0" expanded="true" />
+            <element signature="e#10349#10812#0" expanded="true" />
+            <element signature="e#10811#10812#0" expanded="true" />
+            <element signature="e#11971#13172#0" expanded="true" />
+            <element signature="e#13171#13172#0" expanded="true" />
+            <element signature="e#14358#14932#0" expanded="true" />
+            <element signature="e#14931#14932#0" expanded="true" />
+            <element signature="e#17372#19146#0" expanded="true" />
+            <element signature="e#19145#19146#0" expanded="true" />
+            <element signature="e#26560#28593#0" expanded="true" />
+            <element signature="e#28592#28593#0" expanded="true" />
+            <element signature="e#29824#30075#0" expanded="true" />
+            <element signature="e#30074#30075#0" expanded="true" />
+            <element signature="e#32433#32684#0" expanded="true" />
+            <element signature="e#32683#32684#0" expanded="true" />
+            <element signature="e#33837#34088#0" expanded="true" />
+            <element signature="e#34087#34088#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2566,27 +2613,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LoginTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#279#280#0" expanded="false" />
-            <element signature="e#313#314#0" expanded="false" />
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1161#1162#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/ListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="234" column="51" selection-start-line="234" selection-start-column="51" selection-end-line="234" selection-end-column="51" />
           <folding>
-            <element signature="e#8428#8737#0" expanded="true" />
-            <element signature="e#8736#8737#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1435#1436#0" expanded="false" />
+            <element signature="e#1475#1476#0" expanded="false" />
+            <element signature="e#1518#1519#0" expanded="false" />
+            <element signature="e#1565#1566#0" expanded="false" />
+            <element signature="e#3181#3198#0" expanded="false" />
+            <element signature="e#4535#4543#0" expanded="false" />
+            <element signature="e#4608#4616#0" expanded="false" />
+            <element signature="e#4733#5897#0" expanded="false" />
+            <element signature="e#4969#4982#0" expanded="false" />
+            <element signature="e#5896#5897#0" expanded="false" />
+            <element signature="e#6132#6133#0" expanded="false" />
+            <element signature="e#6163#6164#0" expanded="false" />
+            <element signature="e#7251#9308#0" expanded="false" />
+            <element signature="e#8906#9215#0" expanded="false" />
+            <element signature="e#9214#9215#0" expanded="false" />
+            <element signature="e#9307#9308#0" expanded="false" />
+            <element signature="e#10163#10923#0" expanded="false" />
+            <element signature="e#10922#10923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2644,40 +2694,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/ServerRequests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+          <folding>
+            <element signature="e#8577#9179#0" expanded="true" />
+            <element signature="e#9178#9179#0" expanded="true" />
+            <element signature="e#10349#10812#0" expanded="true" />
+            <element signature="e#10811#10812#0" expanded="true" />
+            <element signature="e#11971#13172#0" expanded="true" />
+            <element signature="e#13171#13172#0" expanded="true" />
+            <element signature="e#14358#14932#0" expanded="true" />
+            <element signature="e#14931#14932#0" expanded="true" />
+            <element signature="e#17372#19146#0" expanded="true" />
+            <element signature="e#19145#19146#0" expanded="true" />
+            <element signature="e#26560#28593#0" expanded="true" />
+            <element signature="e#28592#28593#0" expanded="true" />
+            <element signature="e#29824#30075#0" expanded="true" />
+            <element signature="e#30074#30075#0" expanded="true" />
+            <element signature="e#32433#32684#0" expanded="true" />
+            <element signature="e#32683#32684#0" expanded="true" />
+            <element signature="e#33837#34088#0" expanded="true" />
+            <element signature="e#34087#34088#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.448276">
-          <caret line="104" column="23" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="23" />
+        <state vertical-scroll-proportion="-3.851852">
+          <caret line="138" column="5" selection-start-line="138" selection-start-column="4" selection-end-line="138" selection-end-column="5" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#15860#16169#0" expanded="true" />
             <element signature="e#16168#16169#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/ServerRequests.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6259205">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
+        <state vertical-scroll-proportion="-3.851852">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grade.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="24.555555">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_list.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.462963">
+          <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/quara/test_login/TA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LoginTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/quara/test_login/LogoutTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5994109">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <element signature="e#8428#9030#0" expanded="true" />
-            <element signature="e#9029#9030#0" expanded="true" />
-            <element signature="e#10200#10663#0" expanded="true" />
-            <element signature="e#10662#10663#0" expanded="true" />
-            <element signature="e#11822#13023#0" expanded="true" />
-            <element signature="e#13022#13023#0" expanded="true" />
-            <element signature="e#14209#14783#0" expanded="true" />
-            <element signature="e#14782#14783#0" expanded="true" />
-            <element signature="e#17223#18997#0" expanded="true" />
-            <element signature="e#18996#18997#0" expanded="true" />
-            <element signature="e#26411#28444#0" expanded="true" />
-            <element signature="e#28443#28444#0" expanded="true" />
-            <element signature="e#29675#29926#0" expanded="true" />
-            <element signature="e#29925#29926#0" expanded="true" />
-            <element signature="e#32284#32535#0" expanded="true" />
-            <element signature="e#32534#32535#0" expanded="true" />
-            <element signature="e#33688#33939#0" expanded="true" />
-            <element signature="e#33938#33939#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

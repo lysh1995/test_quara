@@ -26,8 +26,6 @@ public class ServerRequests {
         void DatabaseReturnExecute(String line);
     }
 
-
-
     ProgressDialog progressDialog;
 
     public static final int CONNECTION_TIMEOUT = 1000*15;
@@ -71,6 +69,8 @@ public class ServerRequests {
         return con;
     }
 
+    //TODO: If the callback strat doesnt work, change this method to return the line
+    //TODO: And change every subclass to handle the returned line
     private void sendDataToDatabase(String encodedStr, String filename, onDatabaseReturnCallBack callback) {
         BufferedReader reader = null;
         try {
