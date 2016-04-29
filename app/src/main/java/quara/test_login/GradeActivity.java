@@ -39,7 +39,7 @@ import java.util.Map;
 public class GradeActivity extends AppCompatActivity implements View.OnClickListener{
 
     final Context temp = this;
-    Button bLogout;
+    //Button bLogout;
     UserLocalStore userLocalStore;
     Context context;
     ServerRequests serverRequests;
@@ -98,6 +98,7 @@ public class GradeActivity extends AppCompatActivity implements View.OnClickList
         /*add for drawer*/
         mNavItems.add(new NavItem("Quara", "Make request for OH", R.drawable.ic_launcher));
         mNavItems.add(new NavItem("Grade Center", "Check grades", R.drawable.ic_grade));
+        mNavItems.add(new NavItem("Logout", "Log out of Quara.", R.drawable.ic_launcher));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.grade_form);
@@ -138,8 +139,8 @@ public class GradeActivity extends AppCompatActivity implements View.OnClickList
         /*add for drawer end*/
         context = getApplicationContext();
 
-        bLogout = (Button) findViewById(R.id.bLogout);
-        bLogout.setOnClickListener(this);
+        //bLogout = (Button) findViewById(R.id.bLogout);
+        //bLogout.setOnClickListener(this);
 
         userLocalStore = new UserLocalStore(this);
 
@@ -262,15 +263,30 @@ public class GradeActivity extends AppCompatActivity implements View.OnClickList
                 .commit();
 
         mDrawerList.setItemChecked(position, true);
-        String temp = mNavItems.get(position).mTitle;
-        if (temp.equals("Grade Center"))
+        String str = mNavItems.get(position).mTitle;
+        if (str.equals("Grade Center"))
         {
             mDrawerLayout.closeDrawer(mDrawerPane);
         }
-        else if (temp.equals("Quara"))
+        else if (str.equals("Quara"))
         {
             mDrawerLayout.closeDrawer(mDrawerPane);
             startActivity(new Intent(GradeActivity.this, MainActivity.class));
+        }
+        else if (str.equals("Logout"))
+        {
+            mDrawerLayout.closeDrawer(mDrawerPane);
+            TA ta = new TA(userLocalStore.getLoggedInUser().name,"");
+            ServerRequests serverRequest = new ServerRequests(temp);
+            serverRequest.setOffDutyInBackground(ta, new UpdateDutyCallBack() {
+                @Override
+                public void done(String returnTA) {
+                    return;
+                }
+            });
+            userLocalStore.clearUserData();
+            userLocalStore.setUserLoggedIn(false);
+            startActivity(new Intent(this, Login.class));
         }
         // Close the drawer
         mDrawerLayout.closeDrawer(mDrawerPane);

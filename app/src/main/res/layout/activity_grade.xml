@@ -62,13 +62,6 @@ tools:context=".GradeActivity">
             android:orientation="vertical">
         </LinearLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:id="@+id/bLogout"
-            android:text="Logout"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content" />
-
     </LinearLayout>
     </ScrollView>>
 
